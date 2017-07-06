@@ -1,5 +1,4 @@
 const expect = require('chai').expect;
-const should = require('chai').should;
 
 describe('Person', function() {
   let p = new Person('Ben', 25);
@@ -26,38 +25,3 @@ describe('Person', function() {
     expect(doesLogMessage(p.sayAge.bind(p), `I am ${p.age} years old`)).to.be.true;
   });
 });
-
-function doesLogMessage(f, message) {
-    var oldLog = console.log,
-        result = false;
-
-    console.log = function(s) {
-        if (s == message) {
-            result = true;
-        }
-    };
-
-    f();
-
-    console.log = oldLog;
-
-    return result;
-}
-
-function Person(name,age) {
-  this.name = name;
-  this.age = age;
-}
-
-
-Person.prototype.sayHello = function() {
-  console.log('Hello!');
-}
-
-Person.prototype.sayName = function() {
-  console.log(`My name is ${this.name}`);
-}
-
-Person.prototype.sayAge = function() {
-  console.log(`I am ${this.age} years old`)
-}
