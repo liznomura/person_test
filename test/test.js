@@ -25,3 +25,20 @@ describe('Person', function() {
     expect(doesLogMessage(p.sayAge.bind(p), `I am ${p.age} years old`)).to.be.true;
   });
 });
+
+function doesLogMessage(f, message) {
+  var oldLog = console.log,
+    result = false;
+​
+  console.log = function(s) {
+    if (s == message) {
+      result = true;
+    }
+  };
+​
+  f();
+​
+  console.log = oldLog;
+​
+  return result;
+}
