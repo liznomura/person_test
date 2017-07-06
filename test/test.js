@@ -1,4 +1,25 @@
+/*jshint esversion:6*/
 const expect = require('chai').expect;
+
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  sayHello() {
+    console.log('Hello!');
+  }
+
+  sayName() {
+    console.log(`My name is ${this.name}`);
+  }
+
+  sayAge() {
+    console.log(`I am ${this.age} years old`);
+  }
+}
+
 
 describe('Person', function() {
   let p = new Person('Ben', 25);
@@ -29,16 +50,12 @@ describe('Person', function() {
 function doesLogMessage(f, message) {
   var oldLog = console.log,
     result = false;
-​
   console.log = function(s) {
     if (s == message) {
       result = true;
     }
   };
-​
   f();
-​
   console.log = oldLog;
-​
   return result;
 }
